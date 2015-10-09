@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "System", "System\System.csproj", "{0970DFB4-906E-4045-B14A-96C64FC4038C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quintsys.System", "System\Quintsys.System.csproj", "{0970DFB4-906E-4045-B14A-96C64FC4038C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{EFA5E846-B9CF-4A42-8CA0-5145CA90DD76}"
 EndProject
