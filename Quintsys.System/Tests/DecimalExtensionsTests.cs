@@ -1,18 +1,16 @@
 ﻿using System;
 using NUnit.Framework;
+using static Quintsys.System.DecimalExtensions;
 
 namespace Quintsys.System.Tests
 {
     [TestFixture]
     public class DecimalExtensionsTests
     {
-        const decimal SqlMoneyMinimumValue = -922337203685477.5808M;
-        const decimal SqlMoneyMaximumDecimal = 922337203685477.5807M;
-
         [Test]
-        public void Decimal_Values_Smaller_Than_SQL_Money_Minimum_Value_Should_Be_Changed_To_SQL_Money_Minimum_Value()
+        public void Values_Smaller_Than_SQL_Money_Minimum_Should_Be_Changed_To_SQL_Money_Minimum()
         {
-            decimal smallDecimalValue = (SqlMoneyMinimumValue - 1M);
+            const decimal smallDecimalValue = (SqlMoneyMinimumValue - 1.0M);
 
             decimal result = smallDecimalValue.SqlSafeDecimalValue();
 
@@ -20,9 +18,9 @@ namespace Quintsys.System.Tests
         }
 
         [Test]
-        public void Decimal_Values_Greater_Than_SQL_Money_Maximum_Value_Should_Be_Changed_To_SQL_Money_Maximum_Value()
+        public void Values_Greater_Than_SQL_Money_Maximum_Should_Be_Changed_To_SQL_Money_Maximum()
         {
-            decimal largeDecimalValue = (SqlMoneyMaximumDecimal + 1M);
+            const decimal largeDecimalValue = (SqlMoneyMaximumDecimal + 1.0M);
 
             decimal result = largeDecimalValue.SqlSafeDecimalValue();
 
@@ -30,14 +28,14 @@ namespace Quintsys.System.Tests
         }
 
         [Test]
-        public void Decimal_Values_Greater_Than_SQL_Money_Minimum_Value_And_Smaller_Than_SQL_Money_Maximum_Value_Should_Not_Change()
+        public void Values_Greater_Than_SQL_Money_Minimum_And_Smaller_Than_SQL_Money_Maximum_Should_Not_Change()
         {
-            Random random = new Random();
-            var safeRandomDecimalValue = (decimal) (random.NextDouble() * (double) (SqlMoneyMaximumDecimal - SqlMoneyMinimumValue) + (double) SqlMoneyMinimumValue);
-            
-            decimal result = safeRandomDecimalValue.SqlSafeDecimalValue();
+            var random = new Random();
+            decimal randomDecimalValue = random.RandomDecimal(SqlMoneyMaximumDecimal, SqlMoneyMinimumValue);
 
-            Assert.AreEqual(expected: safeRandomDecimalValue, actual: result);
+            decimal result = randomDecimalValue.SqlSafeDecimalValue();
+
+            Assert.AreEqual(expected: randomDecimalValue, actual: result);
         }
     }
 }
