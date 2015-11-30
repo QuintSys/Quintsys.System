@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 
 namespace Quintsys.System.Tests
 {
@@ -28,7 +29,17 @@ namespace Quintsys.System.Tests
         {
             decimal? converted = ((int?) null).ChangeType<decimal?>();
 
-            Assert.AreEqual(default(int?), converted);
+            Assert.AreEqual(default(decimal?), converted);
+            Assert.AreSame(default(decimal?), converted);
+        }
+
+        [Test]
+        public static void Should_Return_Default_Values_For_DBNull()
+        {
+            decimal? converted = DBNull.Value.ChangeType<decimal?>();
+
+            Assert.AreEqual(default(decimal?), converted);
+            Assert.AreSame(default(decimal?), converted);
         }
     }
 }

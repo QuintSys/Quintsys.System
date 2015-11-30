@@ -13,7 +13,7 @@ namespace Quintsys.System
                 return (T) Convert.ChangeType(value, type);
             }
 
-            if (value == null)
+            if (value == null || value == DBNull.Value)
                 return default(T);
 
             type = Nullable.GetUnderlyingType(type);
